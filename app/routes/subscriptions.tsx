@@ -7,7 +7,7 @@ import { Outlet } from '@remix-run/react';
 import { Loader } from '~/components/loader';
 import { Pricing } from '~/components/pricing/basic';
 import { loader as GetLoggedInUser } from '~/routes/api/stripe/getLoggedInUser';
-import { tiers } from '~/types/subscription';
+import { plans } from '~/types/subscription';
 import { getHumanReadableTierName } from '~/types/subscription';
 import { formatDistance } from 'date-fns';
 import { UserWithSubscription } from '~/user.server';
@@ -92,7 +92,7 @@ const Subscription = () => {
             Start 7 days free trial, then select a plan to enjoy further.
           </p>
           <div className="flex gap-x-2 max-w-lg m-auto mt-10">
-            {tiers.map((t) => {
+            {plans.map((t) => {
               return (
                 <Pricing
                   key={t.name}
@@ -104,7 +104,7 @@ const Subscription = () => {
                   }
                   onClick={() => {
                     subscriptionFetcher.submit(
-                      { priceName: t.priceName, tier: t.tier },
+                      { plan: t.tier },
                       {
                         action: '/api/stripe/checkout',
                         method: 'post',

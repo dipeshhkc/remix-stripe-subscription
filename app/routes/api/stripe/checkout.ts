@@ -11,12 +11,11 @@ export const action: ActionFunction = async ({ request }) => {
     return redirect("/");
   }
   const form = await request.formData();
-  const priceName = form.get("priceName") as string;
-  const tier = form.get("tier") as string;
-  const priceId = getPriceId(priceName)!;
+  const plan = form.get("plan") as string;
+  const priceId = getPriceId(plan)!;
   const url = await stripeCheckout({
     priceId,
-    tier,
+    plan,
     user,
   });
 

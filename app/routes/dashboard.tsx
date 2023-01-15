@@ -1,19 +1,10 @@
-import { redirect } from '@remix-run/server-runtime';
 import { Outlet } from 'react-router';
-import { getLoggedInUser, UserWithSubscription } from '~/user.server';
+import { UserWithSubscription } from '~/user.server';
 import { loader as GetLoggedInUser } from '~/routes/api/stripe/getLoggedInUser';
 import { Link, useLoaderData } from '@remix-run/react';
 import { formatDistance } from 'date-fns';
 import { getHumanReadableTierName } from '~/types/subscription';
 import { USER_STATUS } from '~/types/user';
-
-export const action = async () => {
-  const user = await getLoggedInUser();
-  if (!user) {
-    return redirect('/');
-  }
-  redirect('/dashboard');
-};
 
 export const loader = GetLoggedInUser;
 
@@ -54,9 +45,7 @@ const getSubscriptionText = (user: UserWithSubscription) => {
             You are currently subscribed to{' '}
             <span className="text-primary-200">
               {' '}
-              {getHumanReadableTierName(
-                user.subscription?.stripe_plan_id!
-              )}
+              {getHumanReadableTierName(user.subscription?.stripe_plan_id!)}
             </span>{' '}
             Plan. Visit the{' '}
             <Link to="/subscriptions" className="underline">

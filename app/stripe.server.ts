@@ -8,11 +8,11 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export const stripeCheckout = async ({
   priceId,
-  tier,
+  plan,
   user,
 }: {
   priceId: string;
-  tier: string;
+  plan: string;
   user: UserWithSubscription;
 }): Promise<string> => {
   const lineItems = [
@@ -34,7 +34,7 @@ export const stripeCheckout = async ({
     success_url: `${process.env.ORIGIN}/dashboard`,
     cancel_url: `${process.env.ORIGIN}/subscriptions`,
     allow_promotion_codes: true,
-    metadata: { tier },
+    metadata: { plan },
   });
 
   return session.url!;

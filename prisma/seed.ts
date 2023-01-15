@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 const db = new PrismaClient();
-import { add } from "date-fns";
-
+import { add } from 'date-fns';
 
 async function seed() {
   await Promise.all(
