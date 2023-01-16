@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import { UserWithSubscription } from '~/user.server';
-import { loader as GetLoggedInUser } from '~/routes/api/stripe/getLoggedInUser';
+import { loader as GetLoggedInUser } from '~/routes/api/getLoggedInUser';
 import { Link, useLoaderData } from '@remix-run/react';
 import { formatDistance } from 'date-fns';
 import { getHumanReadableTierName } from '~/types/subscription';

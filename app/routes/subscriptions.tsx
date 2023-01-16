@@ -6,7 +6,7 @@ import { Outlet } from '@remix-run/react';
 
 import { Loader } from '~/components/loader';
 import { Pricing } from '~/components/pricing/basic';
-import { loader as GetLoggedInUser } from '~/routes/api/stripe/getLoggedInUser';
+import { loader as GetLoggedInUser } from '~/routes/api/getLoggedInUser';
 import { plans } from '~/types/subscription';
 import { getHumanReadableTierName } from '~/types/subscription';
 import { formatDistance } from 'date-fns';
